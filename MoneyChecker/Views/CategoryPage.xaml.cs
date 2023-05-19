@@ -23,6 +23,8 @@ namespace MoneyChecker.Views
         public CategoryPage()
         {
             InitializeComponent();
+            ListBoxCategories.ItemsSource = MainWindow.MainViewModel.CategoryViewModel.DataSource;
         }
+
     }
 }

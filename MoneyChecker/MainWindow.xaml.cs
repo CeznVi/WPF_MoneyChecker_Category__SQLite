@@ -1,40 +1,27 @@
 ﻿using Microsoft.Win32;
+using MoneyChecker.Entities;
 using MoneyChecker.TabControls;
 using MoneyChecker.Views;
 using MoneyChecker.ViewsModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoneyChecker
 {
-    /*  NEEED COPY PAST  */
-
-
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         private TabViewController _tabViewController;
-        private MainWindowViewModel _windowViewModel;
+        public static MainWindowViewModel MainViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            InitUI();
-
+            
         }
 
         private void InitUI()
@@ -61,15 +48,27 @@ namespace MoneyChecker
 
         }
 
-
-        /*  NEEED COPY PAST  */
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "DB Files|*.db;";
 
-            openFileDialog.Filter = "";
+            string filePath = AppDomain.CurrentDomain.BaseDirectory.Split("\\MoneyChecker\\bin\\Debug\\")[0] + "\\DataBaseSQLite";
 
+            if (!Directory.Exists(filePath))
+                filePath = AppDomain.CurrentDomain.BaseDirectory;
 
+            openFileDialog.InitialDirectory = filePath;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                MainViewModel = new MainWindowViewModel(new SQLiteDbContext(openFileDialog.FileName));
+                if (_tabViewController != null)
+                {
+                    _tabViewController.Body.Children.Clear();
+                }
+                InitUI();
+            }
         }
     }
 }

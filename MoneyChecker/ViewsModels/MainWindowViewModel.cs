@@ -9,16 +9,15 @@ using System.Threading.Tasks;
 namespace MoneyChecker.ViewsModels
 {
 
-    /*  NEEED COPY PAST  */
-    class MainWindowViewModel
+    public class MainWindowViewModel
     {
         private SQLiteDbContext _sQLiteDbContext;
-
-        public MainWindowViewModel(SQLiteDbContext sQLiteDbContext)
+        public CategoryViewModel CategoryViewModel;
+        public MainWindowViewModel(SQLiteDbContext qLiteDbContext)
         {
-            _sQLiteDbContext = sQLiteDbContext;
-
-
+            _sQLiteDbContext = qLiteDbContext;
+            CategoryViewModel = new CategoryViewModel(_sQLiteDbContext);
         }
     }
+
 }

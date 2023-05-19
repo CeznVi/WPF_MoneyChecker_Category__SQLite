@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace MoneyChecker.Models
 {
-    class CategoryModel
+    public class CategoryModel
     {
-
         private SQLiteDbContext _dbContext;
-
         public CategoryModel(SQLiteDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -21,35 +19,28 @@ namespace MoneyChecker.Models
         {
             return _dbContext.Categories.OrderBy(c => c.Id).ToList();
         }
-
-
-        public Category GetCategoryById(int id) 
-        { 
-            return _dbContext.Categories.FirstOrDefault(c => c.Id == id);
-        }
-
-        public bool AddNewCategory(Category category) 
-        { 
-            _dbContext.Categories.Add(category);
-            return _dbContext.SaveChanges() == 1 ? true : false;
-
-        }
-
-        public List<Category> GoDownCategorise(int? parentId = null)
+        public Category GetCategoryById(int Id)
         {
-            List<Category> rezult = new List<Category>();
-
-            foreach (Category subCategory in _dbContext.Categories.Where(c => c.ParrentId == parentId))
-            {
-                rezult.Add(subCategory);
-                subCategory.SubCategories = new List<Category>();
-                subCategory.SubCategories.AddRange(GoDownCategorise(subCategory.Id));
-
-            }
-
-            return rezult;
+            return _dbContext.Categories.FirstOrDefault(c => c.Id == Id);
         }
 
+        public bool AddNewCategory(Category category)
+        {
+            _dbContext.Categories.Add(category);
+            return _dbContext.SaveChanges() == 1 ? true : false;                   //синхронизацию - сохранение в файл
+        }
 
+        public List<Category> GoDownCategories(int? parentId = null)
+        {
+            List<Category> result = new List<Category>();
+            foreach (Category subCat in _dbContext.Categories.Where(c => c.ParentId == parentId))
+            {
+                result.Add(subCat);
+                subCat.SubCategories = new List<Category>();
+                subCat.SubCategories.AddRange(GoDownCategories(subCat.Id));
+            }
+            return result;
+        }
     }
+
 }

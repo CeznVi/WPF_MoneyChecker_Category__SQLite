@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoneyChecker.Entities
 {
-    class UserInfo
+    public class UserInfo
     {
         public int Id { get; set; }
 
@@ -17,8 +17,5 @@ namespace MoneyChecker.Entities
         public int UserId { get; set; }
 
         public User User { get; set; }
-
-
-
     }
 }

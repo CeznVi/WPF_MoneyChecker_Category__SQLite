@@ -6,9 +6,10 @@
       xmlns:local="clr-namespace:MoneyChecker.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CategoryPage" Background="Beige">
+      Title="CategoryPage" Background="LightGray">
 
     <Grid>
-        
+        <ListBox x:Name="ListBoxCategories"/>
+
     </Grid>
 </Page>

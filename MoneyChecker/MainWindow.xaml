@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoneyChecker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Семейный бюджет" Height="500" Width="800" Icon="/MainIcon.png" WindowStartupLocation="CenterScreen">
     <Grid  x:Name="MainWindowGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>

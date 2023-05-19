@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoneyChecker.Entities
 {
-
-    /*  NEEED COPY PAST  */
-
-    class Category
+    public class Category
     {
         public int Id { get; set; }
 
@@ -19,10 +16,13 @@ namespace MoneyChecker.Entities
 
         public string ImgSrc { get; set; }
 
-        public int? ParrentId { get; set; } = null;
+        public int? ParentId { get; set; } = null;
 
-        public List<Category> SubCategories { get; set;}  //list sub cattegory, not save in BD, saving in memory
+        public List<Category> SubCategories { get; set; }       //список для хранения субкатегорий (в б.д не хранится)
 
-
+        public override string ToString()
+        {
+            return $"Id: {Id}; Title: {Title}.";
+        }
     }
 }
