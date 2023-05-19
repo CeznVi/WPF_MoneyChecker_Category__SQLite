@@ -1,10 +1,6 @@
 ﻿using MoneyChecker.Entities;
 using MoneyChecker.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoneyChecker.ViewsModels
 {
@@ -12,14 +8,21 @@ namespace MoneyChecker.ViewsModels
     {
         private SQLiteDbContext _sQLiteDbContext;
         public CategoryModel CategoryModel;
+
+        /*------------------------------------ Конструкторы ------------------------------------*/
         public CategoryViewModel(SQLiteDbContext qLiteDbContext)
         {
             _sQLiteDbContext = qLiteDbContext;
             CategoryModel = new CategoryModel(_sQLiteDbContext);
         }
+
+        /*------------------------------------ Свойства ------------------------------------*/
         public List<Category> DataSource
         {
-            get { return CategoryModel.GetAllCategories(); }
+            get 
+            {
+                return CategoryModel.GetAllCategories(); 
+            }
         }
     }
 }

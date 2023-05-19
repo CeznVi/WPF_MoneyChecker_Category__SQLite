@@ -13,8 +13,9 @@ namespace MoneyChecker.Entities
         public SQLiteDbContext(string dbPath)
         {
             _dbFilePath = dbPath;
-            //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+
+            //Database.EnsureDeleted(); //удалить БД
+            //Database.EnsureCreated(); //создать БД по шаблону
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -22,6 +23,10 @@ namespace MoneyChecker.Entities
             optionsBuilder.UseSqlite($"Filename={_dbFilePath}");           //файл базы данных
         }
 
+        /// <summary>
+        /// Перегрузка метода шаблоного создания БД
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Развертывание бд

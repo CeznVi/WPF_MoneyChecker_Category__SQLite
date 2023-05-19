@@ -1,15 +1,13 @@
 ﻿using MoneyChecker.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoneyChecker.Models
 {
     public class CategoryModel
     {
         private SQLiteDbContext _dbContext;
+
         public CategoryModel(SQLiteDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -27,12 +25,14 @@ namespace MoneyChecker.Models
         public bool AddNewCategory(Category category)
         {
             _dbContext.Categories.Add(category);
-            return _dbContext.SaveChanges() == 1 ? true : false;                   //синхронизацию - сохранение в файл
+            return _dbContext.SaveChanges() == 1 ? true : false;                   //синхронизация - сохранение в файл
         }
 
         public List<Category> GoDownCategories(int? parentId = null)
         {
+
             List<Category> result = new List<Category>();
+
             foreach (Category subCat in _dbContext.Categories.Where(c => c.ParentId == parentId))
             {
                 result.Add(subCat);
@@ -41,6 +41,10 @@ namespace MoneyChecker.Models
             }
             return result;
         }
+
+
+
+
     }
 
 }
