@@ -1,4 +1,5 @@
-﻿using MoneyChecker.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using MoneyChecker.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,6 +31,20 @@ namespace MoneyChecker.Models
             return _dbContext.SaveChanges() == 1 ? true : false;                   //синхронизация - сохранение в файл
         }
 
+        public bool DeleteCategory(Category category) 
+        {
+            _dbContext.Categories.Remove(category);
+            return _dbContext.SaveChanges() == 1 ? true : false;                   //синхронизация - сохранение в файл
+
+        }
+
+        public bool EditCategory(Category category)
+        {
+            _dbContext.Categories.Update(category);
+            return _dbContext.SaveChanges() == 1 ? true : false;                   //синхронизация - сохранение в файл
+
+        }
+
         public List<Category> GoDownCategories(int? parentId = null)
         {
 
@@ -49,7 +64,10 @@ namespace MoneyChecker.Models
             return _dbContext.Categories.Where(c => c.ParentId == null).ToList();
         }
 
-
+        public int GetNextId()
+        {
+            return _dbContext.Categories.Count() + 1;
+        }
 
 
 
