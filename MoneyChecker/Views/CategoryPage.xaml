@@ -104,7 +104,7 @@
 
         </ListView>
 
-        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2">
             <TextBlock Text="Операции с категориями" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             
             <Button x:Name="Button_NewCat"  Height="20" VerticalAlignment="Top" 
@@ -130,11 +130,33 @@
                 <TextBlock Text="Создать" FontSize="16" VerticalAlignment="Center"/>
             </Button>
 
+            <Button x:Name="Button_EdtSubCat"  Height="20" VerticalAlignment="Top" 
+                    Margin="2 2 2 2" Background="LightGray" Click="Button_EdtSubCat_Click" >
+                <TextBlock Text="Изменить" FontSize="16" VerticalAlignment="Center"/>
+            </Button>
+
             <Button x:Name="Button_DellSubCat"  Height="20" VerticalAlignment="Top" 
                     Margin="2 2 2 2" Background="LightGray" Click="Button_DellSubCat_Click" >
                 <TextBlock Text="Удалить" FontSize="16" VerticalAlignment="Center"/>
             </Button>
 
+            <TextBlock Text="Операции с субкатегориями 2 уровня" FontSize="14" TextAlignment="Center"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+
+            <Button x:Name="Button_NewSubSubCat"  Height="20" VerticalAlignment="Top" 
+                    Margin="2 2 2 2" Background="LightGray" Click="Button_NewSubSubCat_Click" >
+                <TextBlock Text="Создать" FontSize="16" VerticalAlignment="Center"/>
+            </Button>
+
+            <Button x:Name="Button_EdtSubSubCat"  Height="20" VerticalAlignment="Top" 
+                    Margin="2 2 2 2" Background="LightGray" Click="Button_EdtSubSubCat_Click" >
+                <TextBlock Text="Изменить" FontSize="16" VerticalAlignment="Center"/>
+            </Button>
+
+            <Button x:Name="Button_DellSubSubCat"  Height="20" VerticalAlignment="Top" 
+                    Margin="2 2 2 2" Background="LightGray" Click="Button_DellSubSubCat_Click" >
+                <TextBlock Text="Удалить" FontSize="16" VerticalAlignment="Center"/>
+            </Button>
 
         </StackPanel>
 

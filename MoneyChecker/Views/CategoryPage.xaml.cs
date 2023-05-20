@@ -10,7 +10,6 @@ namespace MoneyChecker.Views
     /// </summary>
     public partial class CategoryPage : Page
     {
-
         public CategoryPage()
         {
             InitializeComponent();
@@ -85,6 +84,10 @@ namespace MoneyChecker.Views
 
                 ListBoxCategories.ItemsSource = MainWindow.MainViewModel.CategoryViewModel.GetOnlyCategories;
 
+                ListBoxSubSubCategories.ItemsSource = null;
+
+                ListBoxSubCategories.ItemsSource = null;
+
             }
         }
 
@@ -137,6 +140,7 @@ namespace MoneyChecker.Views
             {
                 if(ListBoxSubCategories.SelectedItem != null)
                 {
+
                     MainWindow.MainViewModel.CategoryViewModel.CategoryModel.DeleteCategory(((Category)ListBoxSubCategories.SelectedItem));
 
                     var tmp = ((Category)ListBoxCategories.SelectedItem);
@@ -148,6 +152,128 @@ namespace MoneyChecker.Views
                     ListBoxSubCategories.ItemsSource =
                             ((Category)ListBoxCategories.SelectedItem).SubCategories;
 
+                    ListBoxSubSubCategories.ItemsSource = null;
+                }
+            }
+        }
+
+        private void Button_EdtSubCat_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxCategories.SelectedItem != null)
+            {
+                if (ListBoxSubCategories.SelectedItem != null)
+                {
+                    Editor _editor = new Editor(((Category)ListBoxSubCategories.SelectedItem));
+
+                    if (_editor.ShowDialog() == true)
+                    {
+                        var tmp = ((Category)ListBoxCategories.SelectedItem);
+
+                        MainWindow.MainViewModel.CategoryViewModel.CategoryModel.EditCategory(_editor.category);
+                        
+                        ListBoxCategories.ItemsSource = MainWindow.MainViewModel.CategoryViewModel.GetOnlyCategories;
+
+                        ListBoxCategories.SelectedItem = tmp;
+
+                        ListBoxSubCategories.ItemsSource =
+                                ((Category)ListBoxCategories.SelectedItem).SubCategories;
+
+                    }
+                }
+            }
+        }
+
+        private void Button_NewSubSubCat_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxCategories.SelectedItem != null)
+            {
+                if(ListBoxSubCategories.SelectedItem != null)
+                {
+
+                    Editor _editor = new Editor(
+                        new Category(), ((Category)ListBoxSubCategories.SelectedItem).Id);
+
+                    if (_editor.ShowDialog() == true)
+                    {
+                        Category category = _editor.category;
+                        category.Id = MainWindow.MainViewModel.CategoryViewModel.CategoryModel.GetNextId();
+
+                        MainWindow.MainViewModel.CategoryViewModel.CategoryModel.AddNewCategory(category);
+
+                        var tmp = ((Category)ListBoxCategories.SelectedItem);
+                        var tmpSub = ((Category)ListBoxSubCategories.SelectedItem);
+
+                        ListBoxCategories.ItemsSource = MainWindow.MainViewModel.CategoryViewModel.GetOnlyCategories;
+
+                        ListBoxCategories.SelectedItem = tmp;
+
+                        ListBoxSubSubCategories.ItemsSource =
+                                ((Category)ListBoxSubCategories.SelectedItem).SubCategories;
+
+                        ListBoxSubCategories.SelectedItem = tmpSub;
+                    }
+                }
+            }
+        }
+
+        private void Button_EdtSubSubCat_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxCategories.SelectedItem != null)
+            {
+                if (ListBoxSubCategories.SelectedItem != null)
+                {
+                    if (ListBoxSubSubCategories.SelectedItem != null)
+                    {
+
+                        Editor _editor = new Editor(((Category)ListBoxSubSubCategories.SelectedItem));
+
+                        if (_editor.ShowDialog() == true)
+                        {
+
+                            MainWindow.MainViewModel.CategoryViewModel.CategoryModel.EditCategory(_editor.category);
+
+                            var tmp = ((Category)ListBoxCategories.SelectedItem);
+                            var tmpSub = ((Category)ListBoxSubCategories.SelectedItem);
+
+                            ListBoxCategories.ItemsSource = MainWindow.MainViewModel.CategoryViewModel.GetOnlyCategories;
+
+                            ListBoxCategories.SelectedItem = tmp;
+
+                            ListBoxSubSubCategories.ItemsSource =
+                                    ((Category)ListBoxSubCategories.SelectedItem).SubCategories;
+
+                            ListBoxSubCategories.SelectedItem = tmpSub;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        private void Button_DellSubSubCat_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxCategories.SelectedItem != null)
+            {
+
+                if (ListBoxSubCategories.SelectedItem != null)
+                {
+                    if (ListBoxSubSubCategories.SelectedItem != null)
+                    {
+
+                        MainWindow.MainViewModel.CategoryViewModel.CategoryModel.DeleteCategory(((Category)ListBoxSubSubCategories.SelectedItem));
+
+                        var tmp = ((Category)ListBoxCategories.SelectedItem);
+                        var tmpSub = ((Category)ListBoxSubCategories.SelectedItem);
+
+                        ListBoxCategories.ItemsSource = MainWindow.MainViewModel.CategoryViewModel.GetOnlyCategories;
+
+                        ListBoxCategories.SelectedItem = tmp;
+
+                        ListBoxSubSubCategories.ItemsSource =
+                                ((Category)ListBoxSubCategories.SelectedItem).SubCategories;
+
+                        ListBoxSubCategories.SelectedItem = tmpSub;
+                    }
                 }
             }
         }

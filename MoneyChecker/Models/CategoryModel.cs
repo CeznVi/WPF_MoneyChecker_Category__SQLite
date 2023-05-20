@@ -33,6 +33,16 @@ namespace MoneyChecker.Models
 
         public bool DeleteCategory(Category category) 
         {
+
+            ///Удалить вложеность
+            if(category.SubCategories.Count > 0) 
+            {
+                foreach (var item in category.SubCategories)
+                {
+                    _dbContext.Categories.Remove(item);
+                }
+            }
+
             _dbContext.Categories.Remove(category);
             return _dbContext.SaveChanges() == 1 ? true : false;                   //синхронизация - сохранение в файл
 
