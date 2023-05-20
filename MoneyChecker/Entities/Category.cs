@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace MoneyChecker.Entities
 
         public List<Category> SubCategories { get; set; }       //список для хранения субкатегорий (в б.д не хранится)
 
+
+
+        /* OLD VERSION  */
         public override string ToString()
         {
             return $"Id: {Id}; Title: {Title}.";
         }
+
     }
 }

@@ -11,12 +11,14 @@ namespace MoneyChecker.Models
         public CategoryModel(SQLiteDbContext dbContext)
         {
             _dbContext = dbContext;
+            GoDownCategories();
         }
 
         public List<Category> GetAllCategories()
         {
             return _dbContext.Categories.OrderBy(c => c.Id).ToList();
         }
+
         public Category GetCategoryById(int Id)
         {
             return _dbContext.Categories.FirstOrDefault(c => c.Id == Id);
@@ -41,6 +43,12 @@ namespace MoneyChecker.Models
             }
             return result;
         }
+
+        public List<Category> GetAllCategoriesWithoutSubCategory()
+        {
+            return _dbContext.Categories.Where(c => c.ParentId == null).ToList();
+        }
+
 
 
 

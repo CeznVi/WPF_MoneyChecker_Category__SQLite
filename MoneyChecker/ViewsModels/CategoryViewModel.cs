@@ -24,5 +24,15 @@ namespace MoneyChecker.ViewsModels
                 return CategoryModel.GetAllCategories(); 
             }
         }
+
+        public List<Category> GetOnlyCategories
+        {
+            get
+            {
+                CategoryModel.GoDownCategories();
+                return CategoryModel.GetAllCategoriesWithoutSubCategory();
+            }
+        }
+
     }
 }
