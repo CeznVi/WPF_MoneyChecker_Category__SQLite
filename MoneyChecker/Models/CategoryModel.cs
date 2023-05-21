@@ -76,6 +76,7 @@ namespace MoneyChecker.Models
 
         public int GetNextId()
         {
+            //return _dbContext.Categories.Find( c=> c.id > _)
             return _dbContext.Categories.Count() + 1;
         }
 

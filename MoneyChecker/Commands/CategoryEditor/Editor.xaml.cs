@@ -1,5 +1,13 @@
-﻿using MoneyChecker.Entities;
+﻿using Microsoft.Win32;
+using MoneyChecker.Entities;
+using System;
+using System.Drawing;
+using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Xps.Serialization;
 
 namespace MoneyChecker.Commands.CategoryEditor
 {
@@ -24,8 +32,7 @@ namespace MoneyChecker.Commands.CategoryEditor
             TextBox_Name.Text = category.Title;
             TextBox_Discription.Text = category.Description;
 
-            ////////NEED FIX
-            //_category.ImgSrc =
+            ImageBrowse.Source = new ImageSourceConverter().ConvertFromString(category.ImgSrc) as ImageSource;
         }
 
         public Editor(Category categori, int parentId)
@@ -37,8 +44,8 @@ namespace MoneyChecker.Commands.CategoryEditor
             TextBox_Name.Text = category.Title;
             TextBox_Discription.Text = category.Description;
 
-            ////////NEED FIX
-            //_category.ImgSrc =
+            ImageBrowse.Source = new ImageSourceConverter().ConvertFromString(category.ImgSrc) as ImageSource;
+
         }
 
 
@@ -60,6 +67,26 @@ namespace MoneyChecker.Commands.CategoryEditor
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+            string filePath = AppDomain.CurrentDomain.BaseDirectory.Split("\\MoneyChecker\\bin\\Debug\\")[0] + "\\images";
+
+            if (!Directory.Exists(filePath))
+                filePath = AppDomain.CurrentDomain.BaseDirectory;
+
+            openFileDialog.InitialDirectory = filePath;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                category.ImgSrc = openFileDialog.FileName;
+                ImageBrowse.Source = new ImageSourceConverter().ConvertFromString(category.ImgSrc) as ImageSource;
+
+            }
+
         }
     }
 }

@@ -66,7 +66,6 @@ namespace MoneyChecker.Views
             if(_editor.ShowDialog() == true)
             {
                 Category category = _editor.category;
-                category.Id = MainWindow.MainViewModel.CategoryViewModel.CategoryModel.GetNextId();
 
                 MainWindow.MainViewModel.CategoryViewModel.CategoryModel.AddNewCategory(category);
                 
@@ -116,7 +115,6 @@ namespace MoneyChecker.Views
                 if (_editor.ShowDialog() == true)
                 {
                     Category category = _editor.category;
-                    category.Id = MainWindow.MainViewModel.CategoryViewModel.CategoryModel.GetNextId();
 
                     MainWindow.MainViewModel.CategoryViewModel.CategoryModel.AddNewCategory(category);
 
@@ -196,7 +194,6 @@ namespace MoneyChecker.Views
                     if (_editor.ShowDialog() == true)
                     {
                         Category category = _editor.category;
-                        category.Id = MainWindow.MainViewModel.CategoryViewModel.CategoryModel.GetNextId();
 
                         MainWindow.MainViewModel.CategoryViewModel.CategoryModel.AddNewCategory(category);
 

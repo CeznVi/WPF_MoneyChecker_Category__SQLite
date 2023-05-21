@@ -10,10 +10,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition/>
+            <ColumnDefinition MinWidth="200"/>
+            <ColumnDefinition MinWidth="200"/>
+            <ColumnDefinition MinWidth="200"/>
+            <ColumnDefinition MinWidth="150"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -23,34 +23,38 @@
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="TextBlock_AllCategory" Grid.Row="0" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Категории:"/>
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Категории:" FontSize="14"/>
 
         <TextBlock x:Name="TextBlock_SubCategory" Grid.Row="0" Grid.Column="1" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Субкатегории:"/>
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Субкатегории:"  FontSize="14"/>
 
         <TextBlock x:Name="TextBlock_SubSubCategory" Grid.Row="0" Grid.Column="2" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Субкатегории 2 уровня:"/>
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Субкатегории 2 уровня:"  FontSize="14"/>
 
         <TextBlock x:Name="TextBlock_Operation" Grid.Row="0" Grid.Column="3" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Операции"/>
-        
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Операции"  FontSize="14"/>
+
         <ListView x:Name="ListBoxCategories" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
                   SelectionChanged="ListBoxCategories_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="35"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            
+                            <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Column="0" Source="{Binding ImgSrc}"/>
-                        <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                   Text="{Binding Title}" />
+
+                        <Image Grid.Column="0" Source="{Binding ImgSrc}" 
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Stretch="Fill" Height="30" Width="30" HorizontalAlignment="Left"
+                                    />
+
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                   Text="{Binding Title}" FontSize="14"
+                                   />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -63,17 +67,21 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="35"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-
+                            <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Column="0" Source="{Binding ImgSrc}"/>
-                        <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                   Text="{Binding Title}" />
+
+                        <Image Grid.Column="0" Source="{Binding ImgSrc}" 
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Stretch="Fill" Height="30" Width="30" HorizontalAlignment="Left"
+                                    />
+
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                   Text="{Binding Title}" FontSize="14"
+                                   />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -86,17 +94,21 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="35"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-
+                            <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Column="0" Source="{Binding ImgSrc}"/>
-                        <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                   Text="{Binding Title}" />
+
+                        <Image Grid.Column="0" Source="{Binding ImgSrc}" 
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Stretch="Fill" Height="30" Width="30" HorizontalAlignment="Left"
+                                    />
+
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                   Text="{Binding Title}" FontSize="14"
+                                   />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -106,7 +118,7 @@
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2">
             <TextBlock Text="Операции с категориями" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            
+
             <Button x:Name="Button_NewCat"  Height="20" VerticalAlignment="Top" 
                     Margin="2 2 2 2" Background="LightGray" Click="Button_NewCat_Click">
                 <TextBlock Text="Создать" FontSize="16" VerticalAlignment="Center"/>
@@ -161,6 +173,6 @@
         </StackPanel>
 
 
-        
+
     </Grid>
 </Page>

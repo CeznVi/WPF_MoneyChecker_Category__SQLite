@@ -29,7 +29,12 @@
 
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" x:Name="TextBox_Discription" FontSize="16"/>
 
-        <Button Grid.Column="1" Grid.Row="2" Width="90" Height="30" Margin="10">
+        <Image Grid.Column="1" Grid.Row="2" Margin="60 0 0 0" x:Name="ImageBrowse"
+               RenderOptions.BitmapScalingMode="HighQuality"
+               Stretch="Fill" Height="30" Width="30" HorizontalAlignment="Left"
+               />
+
+        <Button Grid.Column="1" Grid.Row="2" Width="90" Height="30" Margin="10" Click="Button_Click">
             <TextBlock x:Name="TextBlockBrowse" Text="Обзор" FontSize="20" Foreground="Black"/>
         </Button>
 
