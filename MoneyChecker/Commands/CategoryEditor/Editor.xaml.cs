@@ -31,8 +31,9 @@ namespace MoneyChecker.Commands.CategoryEditor
 
             TextBox_Name.Text = category.Title;
             TextBox_Discription.Text = category.Description;
-
-            ImageBrowse.Source = new ImageSourceConverter().ConvertFromString(category.ImgSrc) as ImageSource;
+            
+            if (category.ImgSrc != null)
+                ImageBrowse.Source = new ImageSourceConverter().ConvertFromString(category.ImgSrc) as ImageSource;
         }
 
         public Editor(Category categori, int parentId)
@@ -44,6 +45,7 @@ namespace MoneyChecker.Commands.CategoryEditor
             TextBox_Name.Text = category.Title;
             TextBox_Discription.Text = category.Description;
 
+            if(category.ImgSrc != null)
             ImageBrowse.Source = new ImageSourceConverter().ConvertFromString(category.ImgSrc) as ImageSource;
 
         }
@@ -83,7 +85,8 @@ namespace MoneyChecker.Commands.CategoryEditor
             if (openFileDialog.ShowDialog() == true)
             {
                 category.ImgSrc = openFileDialog.FileName;
-                ImageBrowse.Source = new ImageSourceConverter().ConvertFromString(category.ImgSrc) as ImageSource;
+                if (category.ImgSrc != null)
+                    ImageBrowse.Source = new ImageSourceConverter().ConvertFromString(category.ImgSrc) as ImageSource;
 
             }
 
